@@ -1,0 +1,19 @@
+.result-board {
+  height: 310px;
+  width: 150px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.result-board > div {
+  background-color: #f5f5dd;
+  border-radius: 4px;
+  padding: 10px 0 10px 5px;
+}
+
+.result {
+  flex-grow: 1;
+}

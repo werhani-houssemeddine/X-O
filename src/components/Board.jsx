@@ -6,10 +6,10 @@ function Board() {
   */
   const btnList = () => {
     const arrList = [];
-    for(let index = 0; index < 9; index++)
-      arrList.push(<div className='board-element' key={index} ></div>)
+    for (let index = 0; index < 9; index++)
+      arrList.push(<div className="board-element" key={index}></div>);
     return arrList;
-  } 
+  };
 
   return (
     <div className="board">
@@ -18,7 +18,7 @@ function Board() {
         btnList()
       }
     </div>
-  )
+  );
 }
 
-export default Board
+export default Board;
