@@ -4,7 +4,6 @@
   width: auto;
   min-width: 500px;
   grid-template-columns: repeat(4, 25%);
-  transform: translateY(-40%);
   grid-template-rows: repeat(4, 20px);
   grid-gap: 10px;
   grid-row-gap: 40px;
@@ -26,7 +25,7 @@
   text-decoration: none;
   color: #7b6229;
   font-family: 'Lora', monospace, serif;
-  transform: skewX(5deg);
+  transform: skewX(150deg);
 }
 
 .links-container a:nth-child(2) {
