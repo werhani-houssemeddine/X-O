@@ -1,4 +1,4 @@
-.modal-container{
+.modal-container {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -7,12 +7,12 @@
   display: grid;
   place-content: center;
   -webkit-backdrop-filter: blur(5px) saturate(0.5);
-          backdrop-filter: blur(5px) saturate(0.5);
+  backdrop-filter: blur(5px) saturate(0.5);
   z-index: 10;
   cursor: default;
 }
 
-.players-form{
+.players-form {
   width: 300px;
   height: fit-content;
   background-color: white;
@@ -24,13 +24,13 @@
   gap: 10px;
 }
 
-.player-label{
+.player-label {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-style: italic;
   font-size: 0.9rem;
 }
 
-.player-input{
+.player-input {
   height: 32px;
   width: 100%;
   border-radius: 5px;
@@ -39,11 +39,11 @@
   padding: 0 10px;
 }
 
-.player-input:focus-within{
+.player-input:focus-within {
   border: 1px solid rgb(208, 63, 63);
 }
 
-.validation-btn{
+.validation-btn {
   width: 100%;
   display: grid;
   place-content: center;

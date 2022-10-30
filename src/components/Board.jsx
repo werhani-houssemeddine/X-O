@@ -6,7 +6,7 @@ function Board({ currentPlayer, changePlayer }) {
     const clickHandler = (e, index) => {
       console.log('Index ', index);
       e.target.innerHTML = currentPlayer.role;
-      changePlayer(currentPlayer.id)
+      changePlayer(currentPlayer.id);
     };
 
     const arrList = [];
