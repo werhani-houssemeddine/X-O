@@ -12,4 +12,7 @@
   background-color: #f5f5dd;
   border: none;
   cursor: pointer;
+  display: grid;
+  place-content: center;
+  font-size: 5rem;
 }

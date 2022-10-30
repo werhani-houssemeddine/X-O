@@ -2,7 +2,6 @@ import '../stylesheets/resultBoard.css';
 
 function Result({ players, results }) {
   const [player1, player2] = players;
-  console.log(players);
   return (
     <div className="result-board">
       <div className="info">
