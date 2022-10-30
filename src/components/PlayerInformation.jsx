@@ -6,13 +6,18 @@ function PlayerInformation({players, setPlayers}) {
   return (
     <div className='modal-container'>
       <div className='players-form'>
-        <div>
-          <label htmlFor="player1">Player 1 Name</label>
-          <input id="player1" type="text" value={player1.name} />
+        <div  className='input-container'>
+          <label htmlFor="player1" className='player-label'>Set Player Name</label>
+          <input id="player1" type="text" value={player1.name} className="player-input" />
         </div>
-        <div>
-          <label htmlFor="player2">Player 1 Name</label>
-          <input id="player2" type="text" value={player2.name} />
+
+        <div className='input-container'>
+          <label htmlFor="player2" className='player-label'>Set Player Name</label>
+          <input id="player2" type="text" value={player2.name} className="player-input" />
+        </div>
+
+        <div className='validation-btn'>
+          <span>Confirmer</span>
         </div>
       </div>
     </div>    
