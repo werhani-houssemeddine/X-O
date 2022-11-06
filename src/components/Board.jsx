@@ -3,10 +3,13 @@ import '../stylesheets/board.css';
 function Board({ currentPlayer, changePlayer }) {
   // this function will return a 2D Array of (3 x 3)
   const btnList = () => {
+    const [player1, player2] = currentPlayer;
+    const current = player1.isNow ? player1 : player2;
+    
     const clickHandler = (e, index) => {
       console.log('Index ', index);
-      e.target.innerHTML = currentPlayer.role;
-      changePlayer(currentPlayer.id);
+      e.target.innerHTML = current.role;
+      changePlayer(current.id);
     };
 
     const arrList = [];

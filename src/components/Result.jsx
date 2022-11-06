@@ -1,8 +1,10 @@
 import '../stylesheets/resultBoard.css';
 
-function Result(props) {
-  console.log(props);
-  /*return (
+function Result({ players, gameplays }) {
+  const [player1, player2] = players;
+
+  //console.log(player1, player2, gameplays);
+  return (
     <div className="result-board">
       <div className="info">
         <p>
@@ -12,21 +14,24 @@ function Result(props) {
           {player2.name}: {player2.role}
         </p>
       </div>
+      
       <div className="result">
-        <p>Game played: {results.player1 + results.player2 + results.draw}</p>
+        <p>Game played: {gameplays}</p>
         <p>
-          {player1.name} wins {results.player1}
+          {player1.name} wins {player1.wins}
         </p>
         <p>
-          {player2.name} wins {results.player2}
+          {player2.name} wins {player2.wins}
         </p>
-        <p>Draw {results.draw}</p>
+        <p>Draw {gameplays - player1.wins - player1.loses}</p>
       </div>
       <div className="playing">
-        {player1.isNow ? `${player1.name} 's role` : `${player2.name} 's role`}
+        {
+        player1.isNow ? `${player1.name} 's role` : `${player2.name} 's role`
+        }
       </div>
     </div>
-  );*/
+  );
   return <p>Under configuration</p>
 }
 

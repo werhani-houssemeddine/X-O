@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../stylesheets/modal.css';
 
-function PlayerInformation({gameMode, setPlayers}) {
+function PlayerInformation({gameMode, setPlayers, hide}) {
 
   const player1 = useRef();
   const player2 = useRef({value: 'Computer'});
@@ -10,7 +10,11 @@ function PlayerInformation({gameMode, setPlayers}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const info = [player1.current.value, player2.current.value];
+
     setPlayers(info);
+    player1.current.value = '';
+    player2.current.value = '';
+    hide();
   };
 
   return (

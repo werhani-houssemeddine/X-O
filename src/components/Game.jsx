@@ -15,6 +15,8 @@ const saveJSON = (key) => (data) =>
 
 // This function will contains the board and result component
 function Game() {
+  const [displayConfiguration, setDisplay] = useState(true);
+
   // The players Name will be saved at the session storage (When the user refresh the page we will not ask
   // him for players name). Every session opened we will consider as a new game so new players.
   // We will save an array of players name [player1, player2] if the game is multiplayer mode
@@ -26,8 +28,8 @@ function Game() {
     mode: id === 'single' ? 'single' : 'two player',
     gamePlayed: 0,
     players: [
-      { name: '', wins: 0, loses: 0, id: '' },
-      { name: '', wins: 0, loses: 0, id: '' },
+      { name: '', wins: 0, loses: 0, id: 'pla 1', role: 'X', isNow: true},
+      { name: '', wins: 0, loses: 0, id: 'pla 2', role: 'O', isNow: false},
     ],
     gameID: 'rtk892',
   });
@@ -38,25 +40,35 @@ function Game() {
         ...prev,
         players: [
           {...prev.players[0], name: player1},
-          {...prev.players[0], name: player2},
+          {...prev.players[1], name: player2},
         ]
       }
     ));
   };
 
-  console.log(game);
+  const swapePlayer = (id) => {
+    setGame((prev) => (
+      {
+        ...prev,
+        players: prev.players.map(player => ({...player, isNow: player.id !== id}))        
+      }
+    ));
+  };
+
+  //console.log(game);
 
   return (
     <>
       <div id="game" style={gameStyle}>
-        <PlayerInformation setPlayers={setPlayers} gameMode={game.mode} />
-          <Result players={game.players} />
-          {/*
-          <Board
-            currentPlayer={players[0].isNow ? players[0] : players[1]}
-            changePlayer={changePlayer}
-          />
-          */}
+        { 
+          displayConfiguration &&
+          <PlayerInformation setPlayers={setPlayers} gameMode={game.mode} hide={() => setDisplay(false)} />
+        } 
+        <Result players={game.players} gameplays={game.gamePlayed} />
+        <Board
+          currentPlayer={game.players}
+          changePlayer={swapePlayer}
+        />
       </div>
       <a href="../" style={{ color: 'white' }}>
         Back
