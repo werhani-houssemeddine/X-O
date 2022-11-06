@@ -1,8 +1,8 @@
 import '../stylesheets/resultBoard.css';
 
-function Result({ players, results }) {
-  const [player1, player2] = players;
-  return (
+function Result(props) {
+  console.log(props);
+  /*return (
     <div className="result-board">
       <div className="info">
         <p>
@@ -26,7 +26,8 @@ function Result({ players, results }) {
         {player1.isNow ? `${player1.name} 's role` : `${player2.name} 's role`}
       </div>
     </div>
-  );
+  );*/
+  return <p>Under configuration</p>
 }
 
 export default Result;

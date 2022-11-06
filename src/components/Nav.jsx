@@ -21,12 +21,6 @@ function Nav() {
           <Button title="Multiplayer" />
         </li>
       </Link>
-
-      <Link to="/history">
-        <li className="links">
-          <Button title="History" />
-        </li>
-      </Link>
     </ul>
   );
 }

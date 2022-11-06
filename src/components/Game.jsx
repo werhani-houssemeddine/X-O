@@ -9,6 +9,10 @@ const gameStyle = {
   gap: '20px',
 };
 
+const loadJSON = (key) => key && JSON.parse(sessionStorage.getItem(key));
+const saveJSON = (key) => (data) =>
+  sessionStorage.setItem(key, JSON.stringify(data));
+
 // This function will contains the board and result component
 function Game() {
   // The players Name will be saved at the session storage (When the user refresh the page we will not ask
@@ -16,45 +20,43 @@ function Game() {
   // We will save an array of players name [player1, player2] if the game is multiplayer mode
   // and [player1, computer] if the game is single mode
   const { id } = useParams();
-  let _players;
-  if (id === 'single') {
-    _players = JSON.parse(sessionStorage.getItem('singleMode')) || [
-      'player1',
-      'player2',
-    ];
-  } else {
-    _players = JSON.parse(sessionStorage.getItem('multi')) || [
-      'player1',
-      'computer',
-    ];
-  }
 
-  const [players, setPlayers] = useState([
-    { id: 'X-1', role: 'X', name: _players[0] },
-    { id: 'O-1', role: 'O', name: _players[1] },
-  ]);
+  // When I load data from history the game should save in that format
+  const [game, setGame] = useState({
+    mode: id === 'single' ? 'single' : 'two player',
+    gamePlayed: 0,
+    players: [
+      { name: '', wins: 0, loses: 0, id: '' },
+      { name: '', wins: 0, loses: 0, id: '' },
+    ],
+    gameID: 'rtk892',
+  });
 
-  const changePlayer = (currentPlayer) => {
-    setPlayers((prev) =>
-      prev.map((player) => ({ ...player, isNow: !player.isNow }))
-    );
+  const setPlayers = ([player1, player2]) => {
+    setGame((prev) => (
+      {
+        ...prev,
+        players: [
+          {...prev.players[0], name: player1},
+          {...prev.players[0], name: player2},
+        ]
+      }
+    ));
   };
 
-  const results = {
-    player1: 10,
-    player2: 7,
-    draw: 3,
-  };
+  console.log(game);
 
   return (
     <>
       <div id="game" style={gameStyle}>
-        <PlayerInformation players={players} setPlayers={setPlayers} />
-        <Result players={players} results={results} />
-        <Board
-          currentPlayer={players[0].isNow ? players[0] : players[1]}
-          changePlayer={changePlayer}
-        />
+        <PlayerInformation setPlayers={setPlayers} gameMode={game.mode} />
+          <Result players={game.players} />
+          {/*
+          <Board
+            currentPlayer={players[0].isNow ? players[0] : players[1]}
+            changePlayer={changePlayer}
+          />
+          */}
       </div>
       <a href="../" style={{ color: 'white' }}>
         Back

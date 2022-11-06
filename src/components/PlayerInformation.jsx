@@ -1,12 +1,21 @@
+import { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../stylesheets/modal.css';
 
-function PlayerInformation({ players, setPlayers }) {
-  const [player1, player2] = players;
+function PlayerInformation({gameMode, setPlayers}) {
+
+  const player1 = useRef();
+  const player2 = useRef({value: 'Computer'});
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const info = [player1.current.value, player2.current.value];
+    setPlayers(info);
+  };
 
   return (
     <div className="modal-container">
-      <div className="players-form">
+      <form className="players-form" onSubmit={handleSubmit}>
         <div className="input-container">
           <label htmlFor="player1" className="player-label">
             Set Player Name
@@ -14,14 +23,15 @@ function PlayerInformation({ players, setPlayers }) {
           <input
             id="player1"
             type="text"
-            value={player1.name}
+            placeholder="Player 1"
             className="player-input"
+            ref={player1}
           />
         </div>
         {
           // At this moment we will check only for name
           // if the name === computer it will not render the next div
-          player2.name === 'computer' ? (
+           gameMode === 'single' ? (
             ''
           ) : (
             <div className="input-container">
@@ -31,17 +41,20 @@ function PlayerInformation({ players, setPlayers }) {
               <input
                 id="player2"
                 type="text"
-                value={player2.name}
+                placeholder="Player 2"
                 className="player-input"
+                ref={player2}
               />
             </div>
           )
         }
 
-        <div className="validation-btn">
-          <span>Confirmer</span>
+        <div className="validation-btn" onClick={handleSubmit}>
+          <button className="sbm-btn" type="submit">
+            Confirmer
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
