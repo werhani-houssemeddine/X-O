@@ -1,9 +1,8 @@
 // It's a class for single player
 
 export default class Player {
-
   //Id at this moment will be passed as argument
-  constructor(name, id, role, isNow){
+  constructor(name, id, role, isNow) {
     this.name = name;
     this.id = id;
     this.role = role;
@@ -36,24 +35,24 @@ export default class Player {
     this.draws += 1;
   }
 
-  get moves(){
+  get moves() {
     const movesArr = [];
     movesArr = this.moves.filter(Boolean);
     return movesArr;
   }
 
-  Updatemoves(index, player){
-    if(index == -1) this.moves = [];
-    else this.moves[index] = player
+  Updatemoves(index, player) {
+    if (index == -1) this.moves = [];
+    else this.moves[index] = player;
   }
 
-  get player(){
-    if(this.isNow) return this.player.id;
+  get player() {
+    if (this.isNow) return this.player.id;
 
     return null;
   }
 
-  set player(_){
+  set player(_) {
     this.isNow = !this.isNow;
   }
 }

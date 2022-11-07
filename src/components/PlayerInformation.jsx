@@ -2,11 +2,10 @@ import { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import '../stylesheets/modal.css';
 
-function PlayerInformation({gameMode, setPlayers, hide}) {
-
+function PlayerInformation({ gameMode, setPlayers, hide }) {
   const player1 = useRef();
-  const player2 = useRef({value: 'Computer'});
-  
+  const player2 = useRef({ value: 'Computer' });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const info = [player1.current.value, player2.current.value];
@@ -35,7 +34,7 @@ function PlayerInformation({gameMode, setPlayers, hide}) {
         {
           // At this moment we will check only for name
           // if the name === computer it will not render the next div
-           gameMode === 'single' ? (
+          gameMode === 'single' ? (
             ''
           ) : (
             <div className="input-container">

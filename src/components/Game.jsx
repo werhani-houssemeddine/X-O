@@ -28,31 +28,28 @@ function Game() {
     mode: id === 'single' ? 'single' : 'two player',
     gamePlayed: 0,
     players: [
-      { name: '', wins: 0, loses: 0, id: 'pla 1', role: 'X', isNow: true},
-      { name: '', wins: 0, loses: 0, id: 'pla 2', role: 'O', isNow: false},
+      { name: '', wins: 0, loses: 0, id: 'pla 1', role: 'X' },
+      { name: '', wins: 0, loses: 0, id: 'pla 2', role: 'O' },
     ],
+    indexOfCurrentPlayer: 0,
     gameID: 'rtk892',
   });
 
   const setPlayers = ([player1, player2]) => {
-    setGame((prev) => (
-      {
-        ...prev,
-        players: [
-          {...prev.players[0], name: player1},
-          {...prev.players[1], name: player2},
-        ]
-      }
-    ));
+    setGame((prev) => ({
+      ...prev,
+      players: [
+        { ...prev.players[0], name: player1 },
+        { ...prev.players[1], name: player2 },
+      ],
+    }));
   };
 
   const swapePlayer = (id) => {
-    setGame((prev) => (
-      {
-        ...prev,
-        players: prev.players.map(player => ({...player, isNow: player.id !== id}))        
-      }
-    ));
+    setGame((prev) => ({
+      ...prev,
+      indexOfCurrentPlayer: (prev.indexOfCurrentPlayer + 1) % 2,
+    }));
   };
 
   //console.log(game);
@@ -60,13 +57,20 @@ function Game() {
   return (
     <>
       <div id="game" style={gameStyle}>
-        { 
-          displayConfiguration &&
-          <PlayerInformation setPlayers={setPlayers} gameMode={game.mode} hide={() => setDisplay(false)} />
-        } 
-        <Result players={game.players} gameplays={game.gamePlayed} />
+        {displayConfiguration && (
+          <PlayerInformation
+            setPlayers={setPlayers}
+            gameMode={game.mode}
+            hide={() => setDisplay(false)}
+          />
+        )}
+        <Result
+          players={game.players}
+          playerIndex={game.indexOfCurrentPlayer}
+          gameplays={game.gamePlayed}
+        />
         <Board
-          currentPlayer={game.players}
+          currentPlayer={game.players[game.indexOfCurrentPlayer]}
           changePlayer={swapePlayer}
         />
       </div>
