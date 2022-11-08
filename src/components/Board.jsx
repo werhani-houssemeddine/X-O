@@ -9,8 +9,10 @@ function Board({ currentPlayer, changePlayer }) {
 
     const clickHandler = (e, index) => {
       console.log('Index ', index);
-      e.target.innerHTML = current;
-      changePlayer();
+      if (e.target.innerHTML === '') {
+        e.target.innerHTML = current;
+        changePlayer();
+      }
     };
 
     const arrList = [];

@@ -1,8 +1,10 @@
 import Result from './Result';
 import Board from './Board';
 import PlayerInformation from './PlayerInformation';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
+import Player from './Player';
+import { gameReducer, INITIAL_STATE } from './reducer';
 
 const gameStyle = {
   display: 'flex',
@@ -21,19 +23,10 @@ function Game() {
   // him for players name). Every session opened we will consider as a new game so new players.
   // We will save an array of players name [player1, player2] if the game is multiplayer mode
   // and [player1, computer] if the game is single mode
-  const { id } = useParams();
-
   // When I load data from history the game should save in that format
-  const [game, setGame] = useState({
-    mode: id === 'single' ? 'single' : 'two player',
-    gamePlayed: 0,
-    players: [
-      { name: '', wins: 0, loses: 0, id: 'pla 1', role: 'X' },
-      { name: '', wins: 0, loses: 0, id: 'pla 2', role: 'O' },
-    ],
-    indexOfCurrentPlayer: 0,
-    gameID: 'rtk892',
-  });
+  //const [game, setGame] = useState({});
+
+  const [game, dispatch] = useReducer(gameReducer, INITIAL_STATE);
 
   const setPlayers = ([player1, player2]) => {
     setGame((prev) => ({

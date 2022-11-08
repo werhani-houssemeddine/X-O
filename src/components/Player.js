@@ -35,24 +35,22 @@ export default class Player {
     this.draws += 1;
   }
 
-  get moves() {
-    const movesArr = [];
-    movesArr = this.moves.filter(Boolean);
-    return movesArr;
+  moves() {
+    return this.moves;
   }
 
-  Updatemoves(index, player) {
+  moves(index) {
     if (index == -1) this.moves = [];
-    else this.moves[index] = player;
+    else this.moves[index] = this.id;
   }
 
-  get player() {
-    if (this.isNow) return this.player.id;
+  getPlayer() {
+    if (this.isNow) return this.id;
 
     return null;
   }
 
-  set player(_) {
+  swape() {
     this.isNow = !this.isNow;
   }
 }

@@ -3,7 +3,7 @@ import '../stylesheets/resultBoard.css';
 function Result({ players, gameplays, playerIndex }) {
   // playerIndex variable is the index of the currentPlayer
   const [player1, player2] = players;
-  //const role = playerIndex[playerIndex].name;
+
   return (
     <div className="result-board">
       <div className="info">
