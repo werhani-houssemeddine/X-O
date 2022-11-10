@@ -25,8 +25,7 @@ function Result({ players, gameplays }) {
         <p>Draw {gameplays - player1.wins - player1.loses}</p>
       </div>
       <div className="playing">
-        {player1.isNow ? player1.name : player2.name}
-        role
+        {player1.isNow ? player1.name : player2.name} role
       </div>
     </div>
   );

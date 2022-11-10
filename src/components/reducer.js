@@ -10,14 +10,19 @@ const ACTIONS_TYPE = {
   MODE: 'MODE',
   SET_PLAYERS: 'SET PLAYERS',
   NEW_GAME: 'NEW GAME',
-  MOVES: 'MOVES'
+  MOVES: 'MOVES',
 };
 const gameReducer = (state, action) => {
   //console.log({ state, action });
-  
+
   switch (action.type) {
     case ACTIONS_TYPE.SWAPE:
-      return 'done';
+      let { players } = state;
+      players = [
+        { ...players[0], isNow: !players[0].isNow },
+        { ...players[1], isNow: !players[1].isNow },
+      ];
+      return { ...state, players };
 
     case ACTIONS_TYPE.MODE:
       const id = action.payload;
@@ -44,7 +49,7 @@ const gameReducer = (state, action) => {
       return { ...state, gamePlayed: state.gamePlayed + 1 };
 
     default:
-      return state
+      return state;
   }
 };
 

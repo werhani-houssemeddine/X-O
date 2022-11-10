@@ -23,11 +23,11 @@ function PlayerInformation(props) {
         : new Player(player2.current.value || 'Player 2', uuidv4(), 'O', false),
     ];
 
-    setGameMode({type: 'MODE', payload: id});
+    setGameMode({ type: 'MODE', payload: id });
     setGameMode({ type: 'SET PLAYERS', payload: players });
 
     player1.current.value = '';
-    player2.current.value = '';
+    id != 'single' && (player2.current.value = '');
     hide();
   };
 

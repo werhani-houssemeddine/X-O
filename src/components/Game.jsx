@@ -26,16 +26,7 @@ function Game() {
   //const [game, setGame] = useState({});
 
   const [game, dispatch] = useReducer(gameReducer, INITIAL_STATE);
-
-  const swapePlayer = (id) => {
-    setGame((prev) => ({
-      ...prev,
-      indexOfCurrentPlayer: (prev.indexOfCurrentPlayer + 1) % 2,
-    }));
-  };
-
   //console.log(game);
-  const test = false;
 
   return (
     <>
@@ -46,12 +37,12 @@ function Game() {
             hide={() => setDisplay(false)}
           />
         )}
-        {test && (
+        {!displayConfiguration && (
           <>
             <Result players={game.players} gameplays={game.gamePlayed} />
             <Board
               players={game.players}
-              setMoves={(mode) => console.log(mode)}
+              setMoves={(mode) => dispatch(mode)}
               map={game.moves}
             />
           </>
