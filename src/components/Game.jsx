@@ -27,16 +27,7 @@ function Game() {
   //const [game, setGame] = useState({});
 
   const [game, dispatch] = useReducer(gameReducer, INITIAL_STATE);
-
-  const setPlayers = ([player1, player2]) => {
-    setGame((prev) => ({
-      ...prev,
-      players: [
-        { ...prev.players[0], name: player1 },
-        { ...prev.players[1], name: player2 },
-      ],
-    }));
-  };
+  console.log(game);
 
   const swapePlayer = (id) => {
     setGame((prev) => ({
@@ -46,26 +37,27 @@ function Game() {
   };
 
   //console.log(game);
+  const test = false;
 
   return (
     <>
       <div id="game" style={gameStyle}>
         {displayConfiguration && (
           <PlayerInformation
-            setPlayers={setPlayers}
-            gameMode={game.mode}
+            setGameMode={(mode) => console.log(mode)}
             hide={() => setDisplay(false)}
           />
         )}
-        <Result
-          players={game.players}
-          playerIndex={game.indexOfCurrentPlayer}
-          gameplays={game.gamePlayed}
-        />
-        <Board
-          currentPlayer={game.players[game.indexOfCurrentPlayer]}
-          changePlayer={swapePlayer}
-        />
+        {test && (
+          <>
+            <Result players={game.players} gameplays={game.gamePlayed} />
+            <Board
+              players={game.players}
+              setMoves={(mode) => console.log(mode)}
+              map={game.moves}
+            />
+          </>
+        )}
       </div>
       <a href="../" style={{ color: 'white' }}>
         Back

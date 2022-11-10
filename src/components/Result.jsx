@@ -1,7 +1,6 @@
 import '../stylesheets/resultBoard.css';
 
-function Result({ players, gameplays, playerIndex }) {
-  // playerIndex variable is the index of the currentPlayer
+function Result({ players, gameplays }) {
   const [player1, player2] = players;
 
   return (
@@ -25,10 +24,12 @@ function Result({ players, gameplays, playerIndex }) {
         </p>
         <p>Draw {gameplays - player1.wins - player1.loses}</p>
       </div>
-      <div className="playing">{players[playerIndex].name} role</div>
+      <div className="playing">
+        {player1.isNow ? player1.name : player2.name}
+        role
+      </div>
     </div>
   );
-  return <p>Under configuration</p>;
 }
 
 export default Result;

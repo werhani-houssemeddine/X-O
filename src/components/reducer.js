@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   mode: '',
   gamePlayed: 0,
   players: [],
+  moves: [...Array(9)],
   gameID: 'rtk892',
 };
 const ACTIONS_TYPE = {
@@ -11,24 +12,23 @@ const ACTIONS_TYPE = {
   MODE: 'MODE',
   SET_PLAYERS: 'SET PLAYERS',
   NEW_GAME: 'NEW GAME',
+  MOVES: 'MOVES'
 };
 const gameReducer = (state, action) => {
+  console.log({ state, action });
   switch (action.type) {
     case ACTIONS_TYPE.SWAPE:
       return 'done';
 
     case ACTIONS_TYPE.MODE:
-      const { id } = action.payload;
+      const id = action.payload;
+      console.log(action);
       return { ...state, mode: id === 'single' ? 'single' : 'two_players' };
 
     case ACTIONS_TYPE.SET_PLAYERS:
-      const [player1, player2] = action.payload;
       return {
         ...state,
-        players: [
-          new Player(player1.name, player1.id, 'X', true),
-          new Player(player2.name, player2.id, 'O', false),
-        ],
+        players: action.payload,
       };
 
     case ACTIONS_TYPE.SET_WINNER:
@@ -37,6 +37,9 @@ const gameReducer = (state, action) => {
         if (player.id === playerID) player.wins += 1;
         else player.loses += 1;
       });
+      return state;
+
+    case ACTIONS_TYPE.MOVES:
       return state;
 
     case ACTIONS_TYPE.NEW_GAME:
