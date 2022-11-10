@@ -10,7 +10,6 @@ export default class Player {
     this.wins = 0;
     this.loses = 0;
     this.draws = 0;
-    this.moves = [];
   }
 
   get win() {

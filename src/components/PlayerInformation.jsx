@@ -8,22 +8,23 @@ function PlayerInformation(props) {
   const { setPlayers, hide, setGameMode } = props;
 
   const { id } = useParams();
-  setGameMode({ type: 'MODE', payload: id });
 
   const player1 = useRef();
-  const player2 = useRef({ value: 'Computer' });
+  const player2 = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const COMPUTER = new Player('Computer', 'cmp', 'O', false);
+
     const players = [
-      new Player(player1.current.value, uuidv4(), 'X', true),
+      new Player(player1.current.value || 'Player 1', uuidv4(), 'X', true),
       id === 'single'
         ? COMPUTER
-        : new Player(player2.current.value, uuidv4(), 'O', false),
+        : new Player(player2.current.value || 'Player 2', uuidv4(), 'O', false),
     ];
 
-    setGameMode({ type: 'SET_PLAYERS', payload: players });
+    setGameMode({type: 'MODE', payload: id});
+    setGameMode({ type: 'SET PLAYERS', payload: players });
 
     player1.current.value = '';
     player2.current.value = '';

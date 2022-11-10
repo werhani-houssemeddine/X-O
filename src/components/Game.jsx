@@ -1,10 +1,9 @@
 import Result from './Result';
 import Board from './Board';
 import PlayerInformation from './PlayerInformation';
-import { useState, useReducer } from 'react';
-import { useParams } from 'react-router-dom';
-import Player from './Player';
+import { useState, useReducer, useEffect } from 'react';
 import { gameReducer, INITIAL_STATE } from './reducer';
+import { useParams } from 'react-router-dom';
 
 const gameStyle = {
   display: 'flex',
@@ -27,7 +26,6 @@ function Game() {
   //const [game, setGame] = useState({});
 
   const [game, dispatch] = useReducer(gameReducer, INITIAL_STATE);
-  console.log(game);
 
   const swapePlayer = (id) => {
     setGame((prev) => ({
@@ -44,7 +42,7 @@ function Game() {
       <div id="game" style={gameStyle}>
         {displayConfiguration && (
           <PlayerInformation
-            setGameMode={(mode) => console.log(mode)}
+            setGameMode={dispatch}
             hide={() => setDisplay(false)}
           />
         )}
