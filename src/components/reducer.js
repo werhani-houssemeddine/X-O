@@ -9,6 +9,7 @@ const ACTIONS_TYPE = {
   SWAPE: 'SWAPE',
   MODE: 'MODE',
   SET_PLAYERS: 'SET PLAYERS',
+  SET_WINNER: 'SET WINNER',
   NEW_GAME: 'NEW GAME',
   MOVES: 'MOVES',
 };
@@ -35,7 +36,7 @@ const gameReducer = (state, action) => {
       };
 
     case ACTIONS_TYPE.SET_WINNER:
-      const { playerID } = action.payload;
+      const playerID = action.payload;
       state.players.forEach((player) => {
         if (player.id === playerID) player.wins += 1;
         else player.loses += 1;
