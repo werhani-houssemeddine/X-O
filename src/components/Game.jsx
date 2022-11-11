@@ -25,7 +25,7 @@ function Game() {
   //const [game, setGame] = useState({});
 
   const [game, dispatch] = useReducer(gameReducer, INITIAL_STATE);
-  //console.log(game);
+  //console.log(game.moves);
 
   return (
     <>
@@ -46,7 +46,7 @@ function Game() {
             <Board
               players={game.players}
               setMoves={(mode) => dispatch(mode)}
-              map={game.moves}
+              board={game.moves}
             />
           </>
         )}
