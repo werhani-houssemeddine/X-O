@@ -12,7 +12,8 @@ function Board({ players, setMoves, map }) {
           board[index] === board[index + 1] &&
           board[index] === board[index + 2]
         ) {
-          setMoves({ type: 'SET WINNER', id });
+          setMoves({ type: 'SET WINNER', payload: id });
+          
         }
       }
 
@@ -22,16 +23,16 @@ function Board({ players, setMoves, map }) {
           board[index] === board[index + 3] &&
           board[index] === board[index + 6]
         ) {
-          setMoves({ type: 'SET WINNER', id });
+          setMoves({ type: 'SET WINNER', payload: id });
         }
       }
 
       if (board[4] && board[0] === board[4] && board[0] === board[8]) {
-        setMoves({ type: 'SET WINNER', id });
+        setMoves({ type: 'SET WINNER', payload: id });
       }
 
       if (board[4] && board[2] === board[4] && board[2] === board[6]) {
-        setMoves({ type: 'SET WINNER', payload });
+        setMoves({ type: 'SET WINNER', payload: id });
       }
     };
 

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import '../stylesheets/modal.css';
@@ -25,6 +25,7 @@ function PlayerInformation(props) {
 
     setGameMode({ type: 'MODE', payload: id });
     setGameMode({ type: 'SET PLAYERS', payload: players });
+    setGameMode({ type: 'NEW GAME' });
 
     player1.current.value = '';
     id != 'single' && (player2.current.value = '');

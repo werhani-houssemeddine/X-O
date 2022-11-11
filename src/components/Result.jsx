@@ -1,6 +1,6 @@
 import '../stylesheets/resultBoard.css';
 
-function Result({ players, gameplays }) {
+function Result({ players, gameplays, draws }) {
   const [player1, player2] = players;
 
   return (
@@ -22,7 +22,7 @@ function Result({ players, gameplays }) {
         <p>
           {player2.name} wins {player2.wins}
         </p>
-        <p>Draw {gameplays - player1.wins - player1.loses}</p>
+        <p>Draw {draws}</p>
       </div>
       <div className="playing">
         {player1.isNow ? player1.name : player2.name} role

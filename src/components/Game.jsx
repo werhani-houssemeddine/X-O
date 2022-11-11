@@ -3,7 +3,6 @@ import Board from './Board';
 import PlayerInformation from './PlayerInformation';
 import { useState, useReducer, useEffect } from 'react';
 import { gameReducer, INITIAL_STATE } from './reducer';
-import { useParams } from 'react-router-dom';
 
 const gameStyle = {
   display: 'flex',
@@ -39,7 +38,11 @@ function Game() {
         )}
         {!displayConfiguration && (
           <>
-            <Result players={game.players} gameplays={game.gamePlayed} />
+            <Result
+              players={game.players}
+              gameplays={game.gamePlayed}
+              draws={game.draws}
+            />
             <Board
               players={game.players}
               setMoves={(mode) => dispatch(mode)}

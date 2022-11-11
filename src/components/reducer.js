@@ -1,8 +1,9 @@
 const INITIAL_STATE = {
   mode: '',
   gamePlayed: 0,
+  draws: 0,
   players: [],
-  moves: [...Array(9)],
+  moves: [],
   gameID: 'rtk892',
 };
 const ACTIONS_TYPE = {
@@ -41,7 +42,7 @@ const gameReducer = (state, action) => {
         if (player.id === playerID) player.wins += 1;
         else player.loses += 1;
       });
-      return state;
+      return { ...state, moves: [] };
 
     case ACTIONS_TYPE.MOVES:
       return state;
