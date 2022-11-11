@@ -2,6 +2,7 @@ import '../stylesheets/board.css';
 
 function Board({ players, setMoves, board }) {
   //console.log(board);
+
   const checkWinner = (id, board) => {
     for (let index = 0; index < 9; index += 3) {
       if (

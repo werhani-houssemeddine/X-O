@@ -42,7 +42,7 @@ const gameReducer = (state, action) => {
         if (player.id === playerID) player.wins += 1;
         else player.loses += 1;
       });
-      return { ...state, moves: [...Array(9)] };
+      return { ...state, moves: [...Array(9)], gamePlayed: state.gamePlayed + 1 };
 
     case ACTIONS_TYPE.MOVES:
       return state;
