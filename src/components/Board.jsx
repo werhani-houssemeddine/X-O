@@ -1,6 +1,7 @@
 import '../stylesheets/board.css';
 
 function Board({ players, setMoves, board }) {
+  //console.log(board);
   const checkWinner = (id, board) => {
     for (let index = 0; index < 9; index += 3) {
       if (
@@ -9,7 +10,6 @@ function Board({ players, setMoves, board }) {
         board[index] === board[index + 2]
       ) {
         setMoves({ type: 'SET WINNER', payload: id });
-        
       }
     }
 
@@ -35,7 +35,7 @@ function Board({ players, setMoves, board }) {
   const clickHandler = (e, index) => {
     const current = players[0].isNow ? players[0] : players[1];
     if (e.target.innerHTML === '') {
-      e.target.innerHTML = current.role;
+      //e.target.innerHTML = current.role;
       board[index] = current.role;
       setMoves({ type: 'SWAPE' });
       setMoves({ type: 'MOVES', playload: board });
