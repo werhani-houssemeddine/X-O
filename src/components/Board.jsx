@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import '../stylesheets/board.css';
+import computer from './computer';
 
 function Board({ players, setMoves, board }) {
   //console.log(board);
@@ -33,8 +35,9 @@ function Board({ players, setMoves, board }) {
     }
   };
 
+  const current = players[0].isNow ? players[0] : players[1];
+
   const clickHandler = (e, index) => {
-    const current = players[0].isNow ? players[0] : players[1];
     if (e.target.innerHTML === '') {
       //e.target.innerHTML = current.role;
       board[index] = current.role;
@@ -43,6 +46,11 @@ function Board({ players, setMoves, board }) {
       checkWinner(current.id, board);
     }
   };
+
+  useEffect(() => {
+    if(current.id != 'cmp') return;
+    console.log(computer(board));
+  }, [current]);
 
   return (
     <div className="board">
